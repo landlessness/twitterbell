@@ -1,8 +1,7 @@
-var vows = require('vows'),
+var TwitterSensor = require('../../app/sensors/twitter.sensor').TwitterSensor,
+  vows = require('vows'),
   assert = require('assert'),
-  TwitterSensor = require('../../app/sensors/twitter.sensor').TwitterSensor,
   EventEmitter = require('events').EventEmitter;
-
 
 
 vows.describe('twitter.sensor.test')

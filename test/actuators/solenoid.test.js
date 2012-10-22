@@ -1,6 +1,7 @@
 var vows = require('vows'),
   assert = require('assert'),
-  bonescript = require('bonescript'),
+  bonescript = require('bonescript');
+  
   Solenoid = require('../../app/actuators/solenoid').Solenoid;
 
 var off = 48,

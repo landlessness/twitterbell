@@ -1,5 +1,4 @@
-exports.TwitterSensor = function (interval) {
-  this.interval=interval || 300;
+exports.TwitterSensor = function () {
   this.twitter = new require('twitter')({
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
     consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
@@ -13,9 +12,9 @@ exports.TwitterSensor = function (interval) {
 
 exports.TwitterSensor.prototype = {
   checkForDingDongs: function(options) {
+    console.info('checkForDingDongs');
     var that = this;
     var dingDongs=[];
-    console.info('checkForDingDongs');
     this.twitter.getMentions({
       since_id: options.sinceID
     }, function(tweets) {
@@ -24,11 +23,16 @@ exports.TwitterSensor.prototype = {
         tweet = tweets[i];
         if (tweet.text.match(that.regexp)) {
           dingDongs.push(tweet);
-          // emitter.emit("visitor", tweet);
+          console.info('DING DONG!');
+          console.info(tweet.text);
         }
       }
-      that.emitter.emit("#dingdong", dingDongs);
-      options.callback(null, dingDongs, that);
+      if (dingDongs.length > 0) {
+        that.emitter.emit("#dingdong", dingDongs);
+      }
+      if (options.callback) {
+        options.callback(null, dingDongs, that);
+      }
     });
   }
 };
