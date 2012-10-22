@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "dependencies": {
     "vows": "~0.6.4",
-    "bonescript": "0.0.1"
+    "bonescript": "0.0.1",
+    "twitter": "~v0.1.18",
+    "jquery": "~1.7.3"
   }
 }
