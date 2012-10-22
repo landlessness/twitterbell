@@ -8,6 +8,7 @@ exports.TwitterSensor = function (interval) {
   });
   this.sinceID;
   this.regexp = /ding\s*dong/i;
+  this.emitter = new (require('events').EventEmitter);
 };
 
 exports.TwitterSensor.prototype = {
@@ -26,6 +27,7 @@ exports.TwitterSensor.prototype = {
           // emitter.emit("visitor", tweet);
         }
       }
+      that.emitter.emit("#dingdong", dingDongs);
       options.callback(null, dingDongs, that);
     });
   }

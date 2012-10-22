@@ -1,6 +1,9 @@
 var vows = require('vows'),
-assert = require('assert'),
-TwitterSensor = require('../../app/sensors/twitter.sensor').TwitterSensor;
+  assert = require('assert'),
+  TwitterSensor = require('../../app/sensors/twitter.sensor').TwitterSensor,
+  EventEmitter = require('events').EventEmitter;
+
+
 
 vows.describe('twitter.sensor.test')
   .addBatch({
@@ -27,6 +30,14 @@ vows.describe('twitter.sensor.test')
           assert.strictEqual(dingDongs.length > 0, true);
           assert.match (dingDongs[0].text, twitterSensor.regexp);
         }
+      }
+    }
+  })
+  .addBatch({
+    'a twitter sensor': {
+      topic: new TwitterSensor(),
+      'has an event emitter': function(twitterSensor) {
+        assert.instanceOf(twitterSensor.emitter,EventEmitter);
       }
     }
   })
