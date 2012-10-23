@@ -21,7 +21,7 @@ exports.TwitterController.prototype = {
     });
     setInterval(function() {
       that.twitterSensor.checkForDingDongs({sinceID: that.sinceID});
-    }, 12000);
+    }, 10000);
   }
 }
 
